@@ -1,48 +1,15 @@
 import { auth, db } from "./Database/firebase.config";
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { FcGoogle } from "react-icons/fc";
 
 function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [psw, setPsw] = useState("");
     const navigate = useNavigate();
-
-    const handleGoogleSignUp = async () => {
-        const provider = new GoogleAuthProvider();
-
-        try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-
-            await addDoc(collection(db, "users"), {
-                email: user.email,
-                name: user.displayName,
-                userId: user.uid
-            });
-
-            Swal.fire({
-                title: "Good job!",
-                text: "User signed up successfully!",
-                icon: "success"
-            });
-
-            navigate("/Home");
-        } catch (error) {
-            console.error("Error during Google signup:", error);
-
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                footer: '<a href="#">Why do I have this issue?</a>'
-            });
-        }
-    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -138,15 +105,6 @@ function Signup() {
                         </p>
                     </div>
                 </form>
-                <div className="mt-6">
-                    <button
-                        onClick={handleGoogleSignUp}
-                        className="flex items-center justify-center w-full px-4 py-2 text-gray-600 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                    >
-                        <FcGoogle className="w-6 h-6 mr-2" />
-                        Sign up with Google
-                    </button>
-                </div>
             </div>
         </div>
     );
