@@ -6,7 +6,6 @@ import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function Signup() {
-    const [username, setUsername] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [psw, setPsw] = useState("");
@@ -71,16 +70,6 @@ function Signup() {
                         />
                     </div>
                     <div>
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
-                        <input
-                            type="text"
-                            id="username"
-                            placeholder="Username"
-                            required
-                            value={username}
-                            onChange={(event) => setUsername(event.target.value)}
-                            className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-                        />
                     </div>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
