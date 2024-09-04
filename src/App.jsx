@@ -1,23 +1,20 @@
-// import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './Screens/Home';
-import About from './Screens/About';
-import Signup from './Screens/Signup';
 import Login from './Screens/Login';
-
+import Signup from "./Screens/Signup";
 
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Signup />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
-export default App
+
+export default App;
