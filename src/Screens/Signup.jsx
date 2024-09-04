@@ -32,7 +32,6 @@ function Signup() {
                 setEmail("");
                 setPsw("");
 
-                // Show success alert
                 Swal.fire({
                     title: "Good job!",
                     text: "User signed up successfully!",
