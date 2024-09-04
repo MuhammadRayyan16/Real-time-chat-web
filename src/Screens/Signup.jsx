@@ -4,7 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { FcGoogle } from "react-icons/fc"; // Import Google icon from react-icons
+import { FcGoogle } from "react-icons/fc";
 
 function Signup() {
     const [name, setName] = useState("");
