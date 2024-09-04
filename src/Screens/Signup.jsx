@@ -1,10 +1,10 @@
 import { auth, db } from "./Database/firebase.config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import { FcGoogle } from "react-icons/fc"; // Import Google icon from react-icons
 
 function Signup() {
     const [name, setName] = useState("");
@@ -12,7 +12,39 @@ function Signup() {
     const [psw, setPsw] = useState("");
     const navigate = useNavigate();
 
-    function handleSubmit(event) {
+    const handleGoogleSignUp = async () => {
+        const provider = new GoogleAuthProvider();
+
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            await addDoc(collection(db, "users"), {
+                email: user.email,
+                name: user.displayName,
+                userId: user.uid
+            });
+
+            Swal.fire({
+                title: "Good job!",
+                text: "User signed up successfully!",
+                icon: "success"
+            });
+
+            navigate("/Home");
+        } catch (error) {
+            console.error("Error during Google signup:", error);
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+        }
+    };
+
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         createUserWithEmailAndPassword(auth, email, psw)
@@ -48,7 +80,7 @@ function Signup() {
                     footer: '<a href="#">Why do I have this issue?</a>'
                 });
             });
-    }
+    };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -106,6 +138,15 @@ function Signup() {
                         </p>
                     </div>
                 </form>
+                <div className="mt-6">
+                    <button
+                        onClick={handleGoogleSignUp}
+                        className="flex items-center justify-center w-full px-4 py-2 text-gray-600 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    >
+                        <FcGoogle className="w-6 h-6 mr-2" />
+                        Sign up with Google
+                    </button>
+                </div>
             </div>
         </div>
     );
