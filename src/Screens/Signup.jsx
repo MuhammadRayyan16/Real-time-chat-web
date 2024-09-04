@@ -21,12 +21,10 @@ function Signup() {
                 return addDoc(collection(db, "users"), {
                     email: email,
                     name: name,
-                    username: username,
                     userId: user.uid
                 });
             })
             .then(() => {
-                setUsername("");
                 setName("");
                 setEmail("");
                 setPsw("");
@@ -42,7 +40,6 @@ function Signup() {
             .catch((error) => {
                 console.error("Error during signup or Firestore operation:", error);
 
-
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -55,7 +52,7 @@ function Signup() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-lg rounded-lg">
-                <h2 className="text-2xl font-bold text-center text-gray-800">Sign up</h2>
+                <h1 className="text-4xl font-bold text-center text-gray-600">Sign up</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label htmlFor="fullname" className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -68,8 +65,6 @@ function Signup() {
                             onChange={(event) => setName(event.target.value)}
                             className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
                         />
-                    </div>
-                    <div>
                     </div>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
