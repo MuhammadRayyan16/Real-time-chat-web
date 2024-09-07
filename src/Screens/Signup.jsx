@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 
 
 
+
 function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
