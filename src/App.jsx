@@ -6,6 +6,7 @@ import NotFound from "./Screens/Notfound";
 
 
 
+
 function App() {
 
   return (
@@ -19,6 +20,7 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 
 export default App;
