@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
- import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 
 
