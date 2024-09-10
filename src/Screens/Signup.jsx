@@ -10,7 +10,6 @@ import { useNavigate, Link } from "react-router-dom";
 
 
 
-
 function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
